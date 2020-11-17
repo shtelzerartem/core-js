@@ -1263,8 +1263,6 @@ const data = {
     firefox: '53',
     safari: '10.0',
   },
-  // TODO: Remove from `core-js@4`
-  'esnext.aggregate-error': null,
   'esnext.array.at': {
   },
   'esnext.array.filter-out': {
@@ -1431,8 +1429,6 @@ const data = {
   },
   'esnext.observable': {
   },
-  // TODO: Remove from `core-js@4`
-  'esnext.promise.any': null,
   'esnext.promise.try': {
   },
   'esnext.reflect.define-metadata': {
@@ -1581,9 +1577,5 @@ const data = {
     safari: '14.0',
   },
 };
-
-// TODO: Remove from `core-js@4`
-data['esnext.aggregate-error'] = data['es.aggregate-error'];
-data['esnext.promise.any'] = data['es.promise.any'];
 
 module.exports = data;
