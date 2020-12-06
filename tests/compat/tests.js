@@ -1265,9 +1265,6 @@ GLOBAL.tests = {
   'esnext.math.scale': function () {
     return Math.scale;
   },
-  'esnext.math.seeded-prng': function () {
-    return Math.seededPRNG;
-  },
   'esnext.math.signbit': function () {
     return Math.signbit;
   },
