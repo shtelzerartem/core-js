@@ -1437,6 +1437,9 @@ GLOBAL.tests = {
   'esnext.weak-set.of': function () {
     return WeakSet.of;
   },
+  'web.clear-immediate': function () {
+    return setImmediate && clearImmediate;
+  },
   'web.dom-collections.for-each': function () {
     return (!GLOBAL.NodeList || (NodeList.prototype.forEach && NodeList.prototype.forEach === [].forEach))
       && (!GLOBAL.DOMTokenList || (DOMTokenList.prototype.forEach && DOMTokenList.prototype.forEach === [].forEach));
@@ -1490,11 +1493,11 @@ GLOBAL.tests = {
     }
     return true;
   },
-  'web.immediate': function () {
-    return setImmediate && clearImmediate;
-  },
   'web.queue-microtask': function () {
     return Object.getOwnPropertyDescriptor(GLOBAL, 'queueMicrotask').value;
+  },
+  'web.set-immediate': function () {
+    return setImmediate && clearImmediate;
   },
   'web.set-interval': function () {
     return !MSIE9;
