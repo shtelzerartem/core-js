@@ -24,6 +24,7 @@ function getModulesForEntryPoint(entry) {
 
 const entries = [
   'packages/core-js/index.js',
+  ...glob('packages/core-js/actual/**/*.js'),
   ...glob('packages/core-js/es/**/*.js'),
   ...glob('packages/core-js/full/**/*.js'),
   ...glob('packages/core-js/modules/*.js'),
