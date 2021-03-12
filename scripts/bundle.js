@@ -4,6 +4,7 @@ const { cyan, green } = require('chalk');
 const { minify } = require('terser');
 const builder = require('core-js-builder');
 const { banner } = require('core-js-builder/config');
+const actual = require('core-js-compat/entries')['core-js/actual'];
 
 const PATH = './packages/core-js-bundle/';
 
@@ -13,9 +14,11 @@ function log(kind, name, code) {
   console.log(green(`${ kind }: ${ cyan(`${ PATH }${ name }.js`) }, size: ${ cyan(`${ size }KB`) }`));
 }
 
-async function bundle({ bundled, minified, options = {} }) {
-  const source = await builder({ filename: `${ PATH }${ bundled }.js`, ...options });
-  log('bundling', bundled, source);
+async function bundle({ name, ...options }) {
+  const source = await builder({ filename: `${ PATH }${ name }.js`, ...options });
+  log('bundling', name, source);
+
+  const minified = `${ name }.min`;
 
   const { code, map } = await minify(source, {
     ecma: 5,
@@ -34,13 +37,14 @@ async function bundle({ bundled, minified, options = {} }) {
       webkit: false,
     },
     sourceMap: {
-      url: `${ minified }.js.map`,
+      url: `${ minified }.map`,
     },
   });
 
   await writeFile(`${ PATH }${ minified }.js`, code);
-  await writeFile(`${ PATH }${ minified }.js.map`, map);
+  await writeFile(`${ PATH }${ minified }.map`, map);
   log('minification', minified, code);
 }
 
-bundle({ bundled: 'index', minified: 'minified' });
+bundle({ name: 'full' });
+bundle({ name: 'actual', modules: actual });
