@@ -125,7 +125,7 @@ npm install --save core-js-pure@3.11.0
 npm install --save core-js-bundle@3.11.0
 ```
 
-Already bundled version of `core-js` [on CDN](https://unpkg.com/core-js-bundle@3.11.0) ([minified version](https://unpkg.com/core-js-bundle@3.11.0/minified.js)).
+Already bundled versions of `core-js` on CDN: [actual](https://unpkg.com/core-js-bundle@3.11.0/actual.js), [full](https://unpkg.com/core-js-bundle@3.11.0/full.js).
 
 ### `postinstall` message[⬆](#index)
 The `core-js` project needs your help, so the package shows a message about it after installation. If it causes problems for you, you can disable it:
