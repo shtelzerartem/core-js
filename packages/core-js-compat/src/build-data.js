@@ -30,7 +30,7 @@ for (const scope of [data, external]) {
       }
     };
 
-    if (!module.edge && ie && key !== 'web.immediate') {
+    if (!module.edge && ie && !key.endsWith('immediate')) {
       module.edge = '12';
     }
 
