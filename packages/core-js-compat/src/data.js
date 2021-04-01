@@ -1279,7 +1279,23 @@ const data = {
   },
   'esnext.array.last-item': {
   },
+  'esnext.array.popped': {
+  },
+  'esnext.array.pushed': {
+  },
+  'esnext.array.reversed': {
+  },
+  'esnext.array.shifted': {
+  },
+  'esnext.array.sorted': {
+  },
+  'esnext.array.spliced': {
+  },
   'esnext.array.unique-by': {
+  },
+  'esnext.array.unshifted': {
+  },
+  'esnext.array.with': {
   },
   'esnext.async-iterator.constructor': {
   },
