@@ -80,4 +80,14 @@ module.exports = {
     'esnext.typed-array.find-last-index',
     'esnext.typed-array.unique-by',
   ],
+  3.11: [
+    'esnext.array.popped',
+    'esnext.array.pushed',
+    'esnext.array.reversed',
+    'esnext.array.shifted',
+    'esnext.array.sorted',
+    'esnext.array.spliced',
+    'esnext.array.unshifted',
+    'esnext.array.with',
+  ],
 };
