@@ -15,6 +15,7 @@ module.exports = async function ({
   targets,
   minify = true,
   filename,
+  addModulesList = false,
   summary = {},
 } = {}) {
   const TITLE = filename != null ? filename : '`core-js`';
@@ -60,6 +61,8 @@ module.exports = async function ({
   let script = banner;
 
   if (modules.length) {
+    if (addModulesList) script += `/*\n * ${ modules.join(', ') }\n */`;
+
     const tempFileName = `core-js-${ Math.random().toString(36).slice(2) }.js`;
     const tempFile = join(tmpdir, tempFileName);
 
@@ -78,32 +81,31 @@ module.exports = async function ({
 
     await unlink(tempFile);
 
-    script += `\n!function (undefined) { 'use strict'; ${
+    let code = `!function (undefined) { 'use strict'; ${
       // compress `__webpack_require__` with `keep_fnames` option
       String(file).replace(/function __webpack_require__/, 'var __webpack_require__ = function ')
     } }();`;
-  }
 
-  if (minify) {
-    const { code } = await terser(script, {
-      ecma: 5,
-      keep_fnames: true,
-      compress: {
-        hoist_funs: false,
-        hoist_vars: true,
-        pure_getters: true,
-        passes: 3,
-        unsafe_proto: true,
-        unsafe_undefined: true,
-      },
-      format: {
-        max_line_len: 32000,
-        preamble: banner,
-        webkit: false,
-      },
-    });
+    if (minify) {
+      ({ code } = await terser(code, {
+        ecma: 5,
+        keep_fnames: true,
+        compress: {
+          hoist_funs: false,
+          hoist_vars: true,
+          pure_getters: true,
+          passes: 3,
+          unsafe_proto: true,
+          unsafe_undefined: true,
+        },
+        format: {
+          max_line_len: 32000,
+          webkit: false,
+        },
+      }));
+    }
 
-    script = code;
+    script += `\n${ code }`;
   }
 
   if (summarySize) {
