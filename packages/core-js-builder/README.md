@@ -6,6 +6,7 @@ require('@core-js/builder')({
   exclude: ['es.math', 'es.number.constructor'], // a blacklist of modules / namespaces, by default - empty list
   targets: '> 0.5%',                             // optional browserslist query
   minify: true,                                  // minification, `true` by default
+  addModulesList: true,                          // add the list of bundled modules as a comment to the bundle, `false` by default
   summary: { size: true, modules: false }        // shows summary for the bundle, disabled by default, you could specify required parts or set `true` for enable all of them
   filename: './my-core-js-bundle.js',            // optional target filename, if it's missed a file will not be created
 }).then(code => {                                // code of result polyfill
