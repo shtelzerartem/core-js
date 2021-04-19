@@ -61,7 +61,7 @@ module.exports = async function ({
   let script = banner;
 
   if (modules.length) {
-    if (addModulesList) script += `/*\n * ${ modules.join(', ') }\n */`;
+    if (addModulesList) script += `/*\n${ modules.map(it => ` * ${ it }\n`).join('') } */`;
 
     const tempFileName = `core-js-${ Math.random().toString(36).slice(2) }.js`;
     const tempFile = join(tmpdir, tempFileName);
